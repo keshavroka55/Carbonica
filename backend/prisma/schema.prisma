@@ -1,0 +1,222 @@
+
+// Prisma schema for Carbonica (Postgres)
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Enums
+enum Role {
+  STUDENT
+  TEACHER
+  PARENT
+  ADMIN
+}
+
+enum SubmissionStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
+}
+
+enum Period {
+  DAILY
+  WEEKLY
+  MONTHLY
+  ALL_TIME
+}
+
+model User {
+  id        String    @id @default(uuid())
+  name      String
+  email     String    @unique
+  password  String?   // nullable for oauth users
+  role      Role      @default(STUDENT)
+  bio       String?
+  avatar    String?
+
+  // OAuth / account helpers
+  googleId              String?   @unique
+  emailVerified         Boolean   @default(false)
+  emailVerificationToken String?
+  passwordResetToken    String?
+  passwordResetExpiry   DateTime?
+
+  // relations
+  schoolId  String?   @map("school_id")
+  school    School?   @relation(fields: [schoolId], references: [id])
+
+  classId   String?   @map("class_id")
+  class     SchoolClass? @relation("ClassStudents", fields: [classId], references: [id])
+
+  tasksCreated Task[]  @relation("teacherTasks")
+  submissions  Submission[]
+  verifications Submission[] @relation("verifications")
+  carbonRecords CarbonRecord[]
+  badges       UserBadge[]
+  scores       Score[]
+  logs AuditLog[]
+  classesTaught SchoolClass[] @relation("TeacherClasses")
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("users")
+}
+
+model School {
+  id        String   @id @default(uuid())
+  name      String
+  address   String?
+  country   String?
+  classes   SchoolClass[]
+  createdAt DateTime @default(now())
+
+  users     User[]
+  tasks     Task[]
+  carbonRecords CarbonRecord[]
+
+  @@map("schools")
+}
+
+model SchoolClass {
+  id        String  @id @default(uuid())
+  name      String
+  schoolId  String
+  school    School  @relation(fields: [schoolId], references: [id])
+  teacherId String? 
+  teacher   User?   @relation("TeacherClasses", fields: [teacherId], references: [id])
+  students  User[]  @relation("ClassStudents")
+  tasks     Task[]
+
+
+  createdAt DateTime @default(now())
+  @@map("classes")
+}
+
+model Task {
+  id          String   @id @default(uuid())
+  title       String
+  description String?
+  points      Int      @default(0)
+  startAt     DateTime?
+  endAt       DateTime?
+  isPublic    Boolean  @default(true)
+
+  // creator (usually a teacher)
+  creatorId   String   @map("creator_id")
+  creator     User     @relation("teacherTasks", fields: [creatorId], references: [id])
+
+  // scoped to school or class
+  schoolId    String?  @map("school_id")
+  school      School?  @relation(fields: [schoolId], references: [id])
+  classId     String?  @map("class_id")
+  class       SchoolClass? @relation(fields: [classId], references: [id])
+
+  submissions Submission[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("tasks")
+}
+
+model Submission {
+  id           String           @id @default(uuid())
+  taskId       String           @map("task_id")
+  task         Task             @relation(fields: [taskId], references: [id])
+  studentId    String           @map("student_id")
+  student      User             @relation(fields: [studentId], references: [id])
+
+  mediaUrl     String
+  mediaType    MediaType        @default(IMAGE)
+  caption      String?
+  status       SubmissionStatus @default(PENDING)
+  verifierId   String?          @map("verifier_id")
+  verifier     User?            @relation("verifications", fields: [verifierId], references: [id])
+  verificationComment String?
+  verificationAt DateTime?
+  practicalMarks Int? 
+  pointsAwarded  Int? 
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("submissions")
+}
+
+model CarbonRecord {
+  id            String   @id @default(uuid())
+  userId        String?  @map("user_id")
+  user          User?    @relation(fields: [userId], references: [id])
+  schoolId      String?  @map("school_id")
+  school        School?  @relation(fields: [schoolId], references: [id])
+  recordedAt    DateTime @default(now()) @map("recorded_at")
+
+  // Inputs
+  energyKwh     Float?   @map("energy_kwh")
+  transportKm   Float?   @map("transport_km")
+  wasteKg       Float?   @map("waste_kg")
+
+  // Calculated result in kg CO2e
+  emissionsKg   Float?   @map("emissions_kg")
+  source        String?  // e.g., "manual", "sensor", "import"
+
+  createdAt DateTime @default(now())
+
+  @@map("carbon_records")
+}
+
+model Badge {
+  id          String   @id @default(uuid())
+  name        String
+  description String?
+  iconUrl     String?
+  createdAt   DateTime @default(now())
+
+  users       UserBadge[]
+  @@map("badges")
+}
+
+model UserBadge {
+  id        String  @id @default(uuid())
+  userId    String  @map("user_id")
+  user      User    @relation(fields: [userId], references: [id])
+  badgeId   String  @map("badge_id")
+  badge     Badge   @relation(fields: [badgeId], references: [id])
+  awardedAt DateTime @default(now()) @map("awarded_at")
+
+  @@map("user_badges")
+}
+
+model Score {
+  id        String  @id @default(uuid())
+  userId    String  @map("user_id")
+  user      User    @relation(fields: [userId], references: [id])
+  period    Period  @default(ALL_TIME)
+  periodFor DateTime? @map("period_for")
+  points    Int     @default(0)
+  createdAt DateTime @default(now())
+
+  @@map("scores")
+}
+
+model AuditLog {
+  id        String  @id @default(uuid())
+  actorId   String? @map("actor_id")
+  actor     User?   @relation(fields: [actorId], references: [id])
+  action    String
+  meta      Json?
+  createdAt DateTime @default(now())
+
+  @@map("audit_logs")
+}
+
