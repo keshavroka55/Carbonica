@@ -101,7 +101,7 @@ export default function RegisterPage() {
           className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl"
         >
           {/* LEFT SIDE - IMAGE SECTION */}
-          <div className="relative hidden md:block bg-gradient-to-br from-accent-DEFAULT/90 to-green-700/90 p-8">
+          <div className="relative hidden md:block bg-linear-to-br from-accent/90 to-green-700/90 p-8">
             <div className="absolute inset-0">
               <img 
                 src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -131,7 +131,7 @@ export default function RegisterPage() {
                 <div className="flex items-center gap-4 pt-8">
                   <div className="flex -space-x-2">
                     {[1,2,3,4].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-accent-DEFAULT/30 flex items-center justify-center text-white text-xs font-bold">
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-accent/30 flex items-center justify-center text-white text-xs font-bold">
                         {String.fromCharCode(64+i)}
                       </div>
                     ))}
@@ -156,12 +156,12 @@ export default function RegisterPage() {
           {/* RIGHT SIDE - REGISTRATION FORM */}
           <div className="bg-card-bg p-6 sm:p-8 lg:p-10 overflow-y-auto max-h-[90vh]">
             <div className="flex justify-center mb-6 md:hidden">
-              <div className="bg-accent-DEFAULT p-3 rounded-full">
+              <div className="bg-accent p-3 rounded-full">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary-DEFAULT mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-2">
               Create Account
             </h2>
             <p className="text-muted mb-6">
@@ -183,7 +183,7 @@ export default function RegisterPage() {
             <form onSubmit={handleRegister} className="space-y-5">
               {/* Full Name */}
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Full Name
                 </label>
                 <div className="relative">
@@ -193,7 +193,7 @@ export default function RegisterPage() {
                     placeholder="John Doe"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                 </div>
@@ -201,7 +201,7 @@ export default function RegisterPage() {
 
               {/* Email */}
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Email
                 </label>
                 <div className="relative">
@@ -211,7 +211,7 @@ export default function RegisterPage() {
                     placeholder="student@school.edu"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                 </div>
@@ -219,7 +219,7 @@ export default function RegisterPage() {
 
               {/* Role Selection */}
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   I am a...
                 </label>
                 <div className="grid grid-cols-2 gap-2">
@@ -230,17 +230,17 @@ export default function RegisterPage() {
                       onClick={() => setRole(option.id)}
                       className={`p-3 rounded-xl border transition-all text-left ${
                         role === option.id
-                          ? "border-accent-DEFAULT bg-accent-DEFAULT/5 ring-2 ring-accent-DEFAULT/20"
-                          : "border-border hover:border-accent-DEFAULT/30 hover:bg-secondary-bg"
+                          ? "border-accent bg-accent/5 ring-2 ring-accent/20"
+                          : "border-border hover:border-accent/30 hover:bg-secondary-bg"
                       }`}
                     >
                       <div className={`w-8 h-8 rounded-lg mb-2 flex items-center justify-center ${
-                        role === option.id ? "bg-accent-DEFAULT/20 text-accent-DEFAULT" : "bg-border/50 text-muted"
+                        role === option.id ? "bg-accent/20 text-accent" : "bg-border/50 text-muted"
                       }`}>
                         {option.icon}
                       </div>
                       <p className={`text-sm font-medium ${
-                        role === option.id ? "text-accent-DEFAULT" : "text-primary-DEFAULT"
+                        role === option.id ? "text-accent" : "text-primary"
                       }`}>
                         {option.label}
                       </p>
@@ -252,7 +252,7 @@ export default function RegisterPage() {
 
               {/* Password */}
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Password
                 </label>
                 <div className="relative">
@@ -262,7 +262,7 @@ export default function RegisterPage() {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                   <button
@@ -278,7 +278,7 @@ export default function RegisterPage() {
 
               {/* Confirm Password */}
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Confirm Password
                 </label>
                 <div className="relative">
@@ -288,7 +288,7 @@ export default function RegisterPage() {
                     placeholder="••••••••"
                     value={confirmPassword}
                     onChange={(e) => setConfirmPassword(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                 </div>
@@ -299,14 +299,14 @@ export default function RegisterPage() {
                 <input
                   type="checkbox"
                   id="terms"
-                  className="mt-1 rounded border-border text-accent-DEFAULT focus:ring-accent-DEFAULT/30"
+                  className="mt-1 rounded border-border text-accent focus:ring-accent/30"
                   required
                 />
                 <label htmlFor="terms" className="text-xs text-muted">
                   I agree to the{" "}
-                  <a href="#" className="text-accent-DEFAULT hover:underline">Terms of Service</a>
+                  <a href="#" className="text-accent hover:underline">Terms of Service</a>
                   {" "}and{" "}
-                  <a href="#" className="text-accent-DEFAULT hover:underline">Privacy Policy</a>
+                  <a href="#" className="text-accent hover:underline">Privacy Policy</a>
                 </label>
               </div>
 
@@ -314,7 +314,7 @@ export default function RegisterPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-accent-DEFAULT hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
+                className="w-full py-3 bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -343,7 +343,7 @@ export default function RegisterPage() {
             <p className="text-center">
               <Link
                 to="/login"
-                className="text-accent-DEFAULT hover:text-accent-hover font-semibold transition-colors inline-flex items-center gap-1"
+                className="text-accent hover:text-accent-hover font-semibold transition-colors inline-flex items-center gap-1"
               >
                 Sign in instead
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
