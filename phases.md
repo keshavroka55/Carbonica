@@ -5,7 +5,9 @@ Days 1-5 | Rapid 5-day sprint
 
 - [ ] 1. **Auth** — register, login, JWT authentication, role-based access (student/teacher/admin)
 - [ ] 2. **User Profile** — student/teacher profiles, get/update, role selection, timezone
-- [ ] 3. **Carbon Calculator** — footprint calculator, save results, basic reporting
+
+- [ ] 3. **Carbon Calculator** — footprint calculator, save results, basic reporting 
+
 - [ ] 4. **Tasks & Verification** — student task CRUD, teacher verification workflow
 
 along with the teachers and admin dashboard. 

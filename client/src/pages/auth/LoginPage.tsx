@@ -34,7 +34,7 @@ export default function LoginPage() {
           className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl"
         >
           {/* LEFT SIDE - IMAGE SECTION (as requested) */}
-          <div className="relative hidden md:block bg-gradient-to-br from-accent-DEFAULT/90 to-green-700/90 p-8">
+          <div className="relative hidden md:block bg-linear-to-br from-accent/90 to-green-700/90 p-8">
             <div className="absolute inset-0">
               <img 
                 src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -59,7 +59,7 @@ export default function LoginPage() {
                 <div className="flex items-center gap-4 pt-8">
                   <div className="flex -space-x-2">
                     {[1,2,3].map(i => (
-                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-accent-DEFAULT/30" />
+                      <div key={i} className="w-8 h-8 rounded-full border-2 border-white bg-accent/30" />
                     ))}
                   </div>
                   <p className="text-white/70 text-sm">Join 10,000+ students making a difference</p>
@@ -76,12 +76,12 @@ export default function LoginPage() {
           {/* RIGHT SIDE - LOGIN FORM */}
           <div className="bg-card-bg p-6 sm:p-8 lg:p-12">
             <div className="flex justify-center mb-6 md:hidden">
-              <div className="bg-accent-DEFAULT p-3 rounded-full">
+              <div className="bg-accent p-3 rounded-full">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
             </div>
 
-            <h2 className="text-2xl sm:text-3xl font-bold text-primary-DEFAULT mb-2">
+            <h2 className="text-2xl sm:text-3xl font-bold text-primary mb-2">
               Welcome Back
             </h2>
             <p className="text-muted mb-6">
@@ -96,7 +96,7 @@ export default function LoginPage() {
 
             <form onSubmit={handleLogin} className="space-y-5">
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Email
                 </label>
                 <div className="relative">
@@ -106,14 +106,14 @@ export default function LoginPage() {
                     placeholder="student@school.edu"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                 </div>
               </div>
 
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Password
                 </label>
                 <div className="relative">
@@ -123,7 +123,7 @@ export default function LoginPage() {
                     placeholder="••••••••"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
-                    className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-10 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     required
                   />
                   <button
@@ -138,10 +138,10 @@ export default function LoginPage() {
 
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-border text-accent-DEFAULT focus:ring-accent-DEFAULT/30" />
+                  <input type="checkbox" className="rounded border-border text-accent focus:ring-accent/30" />
                   <span className="text-sm text-muted">Remember me</span>
                 </label>
-                <Link to="/forgot-password" className="text-sm text-accent-DEFAULT hover:underline">
+                <Link to="/forgot-password" className="text-sm text-accent hover:underline">
                   Forgot password?
                 </Link>
               </div>
@@ -149,7 +149,7 @@ export default function LoginPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-accent-DEFAULT hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
+                className="w-full py-3 bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
               >
                 {loading ? "Signing in..." : "Sign In"}
               </button>
@@ -176,7 +176,7 @@ export default function LoginPage() {
 
             <p className="text-center mt-6">
               <span className="text-muted">New to EcoTrack? </span>
-              <Link to="/register" className="text-accent-DEFAULT hover:underline font-semibold">
+              <Link to="/register" className="text-accent hover:underline font-semibold">
                 Create an account
               </Link>
             </p>

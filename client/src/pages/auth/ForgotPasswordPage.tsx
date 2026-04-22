@@ -34,7 +34,7 @@ export default function ForgotPasswordPage() {
           className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl"
         >
           {/* LEFT SIDE - IMAGE SECTION */}
-          <div className="relative hidden md:block bg-gradient-to-br from-accent-DEFAULT/90 to-green-700/90 p-8">
+          <div className="relative hidden md:block bg-linear-to-br from-accent/90 to-green-700/90 p-8">
             <div className="absolute inset-0">
               <img 
                 src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -81,16 +81,16 @@ export default function ForgotPasswordPage() {
           {/* RIGHT SIDE - FORGOT PASSWORD FORM */}
           <div className="bg-card-bg p-6 sm:p-8 lg:p-12">
             <div className="flex justify-center mb-6 md:hidden">
-              <div className="bg-accent-DEFAULT p-3 rounded-full">
+              <div className="bg-accent p-3 rounded-full">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
             </div>
 
             <div className="text-center mb-8">
-              <div className="w-16 h-16 rounded-full bg-accent-DEFAULT/10 flex items-center justify-center mx-auto mb-4">
-                <Mail className="w-8 h-8 text-accent-DEFAULT" />
+              <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                <Mail className="w-8 h-8 text-accent" />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-bold text-primary-DEFAULT">
+              <h2 className="text-2xl sm:text-3xl font-bold text-primary">
                 Forgot Password?
               </h2>
               <p className="text-muted mt-2">
@@ -112,7 +112,7 @@ export default function ForgotPasswordPage() {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label className="text-sm font-medium text-primary-DEFAULT block mb-2">
+                <label className="text-sm font-medium text-primary block mb-2">
                   Email Address
                 </label>
                 <div className="relative">
@@ -121,7 +121,7 @@ export default function ForgotPasswordPage() {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-DEFAULT/50 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-white text-primary placeholder:text-muted/60 focus:outline-none focus:ring-2 focus:ring-accent/50 focus:border-transparent transition-all"
                     placeholder="student@school.edu"
                     required
                   />
@@ -134,7 +134,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-3 bg-accent-DEFAULT hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
+                className="w-full py-3 bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -160,7 +160,7 @@ export default function ForgotPasswordPage() {
 
             <Link
               to="/login"
-              className="flex items-center justify-center gap-2 text-accent-DEFAULT hover:text-accent-hover font-semibold transition-colors group"
+              className="flex items-center justify-center gap-2 text-accent hover:text-accent-hover font-semibold transition-colors group"
             >
               <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
               Back to Login

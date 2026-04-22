@@ -109,7 +109,7 @@ export default function SelectRolePage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-bg-gradient-start to-bg-gradient-end">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-linear-to-br from-bg-gradient-start to-bg-gradient-end">
       <div className="w-full max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -118,7 +118,7 @@ export default function SelectRolePage() {
           className="grid md:grid-cols-2 gap-0 rounded-2xl overflow-hidden shadow-2xl"
         >
           {/* LEFT SIDE - IMAGE SECTION */}
-          <div className="relative hidden md:block bg-gradient-to-br from-accent-DEFAULT/90 to-green-700/90 p-8">
+          <div className="relative hidden md:block bg-linear-to-br from-accent/90 to-green-700/90 p-8">
             <div className="absolute inset-0">
               <img 
                 src="https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80"
@@ -126,7 +126,7 @@ export default function SelectRolePage() {
                 className="w-full h-full object-cover mix-blend-overlay"
               />
             </div>
-            <div className="relative z-10 flex flex-col justify-between h-full min-h-[650px]">
+            <div className="relative z-10 flex flex-col justify-between h-full min-h-162.5">
               <div className="flex items-center gap-2">
                 <div className="bg-white/20 backdrop-blur-sm p-2 rounded-xl">
                   <Leaf className="w-6 h-6 text-white" />
@@ -175,13 +175,13 @@ export default function SelectRolePage() {
           {/* RIGHT SIDE - ROLE SELECTION FORM */}
           <div className="bg-card-bg p-6 sm:p-8 lg:p-10 overflow-y-auto max-h-[90vh]">
             <div className="flex justify-center mb-6 md:hidden">
-              <div className="bg-accent-DEFAULT p-3 rounded-full">
+              <div className="bg-accent p-3 rounded-full">
                 <Leaf className="w-6 h-6 text-white" />
               </div>
             </div>
 
             <div className="text-center mb-8">
-              <h2 className="text-2xl sm:text-3xl font-bold text-primary-DEFAULT">
+              <h2 className="text-2xl sm:text-3xl font-bold text-primary">
                 Welcome to EcoTrack!
               </h2>
               <p className="text-muted mt-2">
@@ -215,15 +215,15 @@ export default function SelectRolePage() {
                       whileTap={{ scale: 0.98 }}
                       className={`relative p-5 rounded-xl border-2 transition-all duration-300 text-left ${
                         isSelected
-                          ? "border-accent-DEFAULT bg-accent-DEFAULT/5 shadow-card"
-                          : "border-border bg-white hover:border-accent-DEFAULT/30 hover:shadow-card"
+                          ? "border-accent bg-accent/5 shadow-card"
+                          : "border-border bg-white hover:border-accent/30 hover:shadow-card"
                       }`}
                     >
                       {/* Selected indicator */}
                       {isSelected && (
                         <motion.div
                           layoutId="selected-indicator"
-                          className="absolute top-3 right-3 w-6 h-6 bg-accent-DEFAULT rounded-full flex items-center justify-center"
+                          className="absolute top-3 right-3 w-6 h-6 bg-accent rounded-full flex items-center justify-center"
                         >
                           <svg
                             className="w-4 h-4 text-white"
@@ -240,14 +240,14 @@ export default function SelectRolePage() {
                       )}
 
                       <div
-                        className={`w-12 h-12 rounded-xl bg-gradient-to-br ${role.color} flex items-center justify-center mb-4 transition-transform ${
+                        className={`w-12 h-12 rounded-xl bg-linear-to-br ${role.color} flex items-center justify-center mb-4 transition-transform ${
                           isSelected ? "scale-105" : ""
                         }`}
                       >
                         <div className="text-white">{role.icon}</div>
                       </div>
                       
-                      <h3 className="text-lg font-semibold text-primary-DEFAULT mb-2">
+                      <h3 className="text-lg font-semibold text-primary mb-2">
                         {role.title}
                       </h3>
                       <p className="text-sm text-muted mb-3">
@@ -258,7 +258,7 @@ export default function SelectRolePage() {
                       <div className="hidden sm:block space-y-1 mt-3 pt-3 border-t border-border/50">
                         {role.benefits.map((benefit, idx) => (
                           <div key={idx} className="flex items-center gap-2 text-xs text-muted">
-                            <ChevronRight className="w-3 h-3 text-accent-DEFAULT" />
+                            <ChevronRight className="w-3 h-3 text-accent" />
                             <span>{benefit}</span>
                           </div>
                         ))}
@@ -272,7 +272,7 @@ export default function SelectRolePage() {
               <button
                 type="submit"
                 disabled={!selectedRole || loading}
-                className="w-full py-3 bg-accent-DEFAULT hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
+                className="w-full py-3 bg-accent hover:bg-accent-hover disabled:opacity-60 disabled:cursor-not-allowed text-white rounded-xl font-semibold shadow-button hover:shadow-button-hover transition-all duration-300"
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -301,7 +301,7 @@ export default function SelectRolePage() {
               You can change your role later in{" "}
               <button 
                 onClick={() => navigate("/settings")}
-                className="text-accent-DEFAULT hover:underline font-medium"
+                className="text-accent hover:underline font-medium"
               >
                 Settings
               </button>

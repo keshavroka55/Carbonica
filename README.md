@@ -1,9 +1,9 @@
 # Carbonica — Carbon Reduction & School Engagement
 
 ## Team members
-- Keshav Roka — Full stack
-- Sweekar Nepal — Full stack
-- Om Dev Karki — Frontend, feature testing, and UX suggestions
+- Keshav Roka
+- Sweekar Nepal 
+- Om Dev Karki 
 
 ## Project overview
 Carbonica is a mobile and web platform that helps reduce carbon footprints while integrating practical environmental activities into school curricula. The platform combines a simple carbon footprint calculator with task-based student engagement, teacher verification, parental involvement, and public recognition.
