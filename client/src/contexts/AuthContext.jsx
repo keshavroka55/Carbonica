@@ -25,6 +25,7 @@ export const AuthProvider = ({ children }) => {
                 return res.json();
             })
             .then(userData => {
+                console.log(userData);
                 setUser(userData);
             })
             .catch(() => setUser(null))
