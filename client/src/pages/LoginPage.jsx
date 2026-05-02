@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { ChefHat, Eye, EyeOff, Mail, Lock } from "lucide-react";
 import Alert from "../components/Alert";
-import { loginAPI } from "../services/auth.service";
+import { loginAPI } from "../services/authService";
 import { useAuth } from "../contexts/AuthContext";
 
 

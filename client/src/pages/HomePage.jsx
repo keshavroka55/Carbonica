@@ -58,7 +58,7 @@ export default function HomePage() {
                             <h3 className="text-lg font-semibold text-gray-900 mb-2">🚀 Features</h3>
                             <p className="text-gray-600 text-sm">Google OAuth</p>
                             <p className="text-gray-600 text-sm">Password Reset</p>
-                            <p className="text-gray-600 text-sm">Role Selection</p>
+                            <p className="text-gray-600 text-sm">Carbon Footprint Calculator</p>
                         </div>
                     </div>
                 </motion.div>
