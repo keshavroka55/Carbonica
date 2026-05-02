@@ -7,6 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 // Enums
@@ -50,6 +51,10 @@ model User {
   emailVerificationToken String?
   passwordResetToken    String?
   passwordResetExpiry   DateTime?
+
+  // Gamification streak tracking (eco engagement feature)
+streakCount Int @default(0)
+lastActiveAt DateTime?
 
   // relations
   schoolId  String?   @map("school_id")
@@ -220,3 +225,33 @@ model AuditLog {
   @@map("audit_logs")
 }
 
+// Defines what kind of eco-action the task represents
+// This is used to automatically assign points in gamification engine
+
+enum TaskType {
+  PLANT_TREE        // 70 points action
+  REDUCE_PLASTIC    // 40 points action
+  SAVE_ELECTRICITY   // 30 points action
+  WALK_HOME          // 20 points action
+}
+
+// Stores history of ALL points earned by users
+// This is used for transparency, debugging, analytics, and gamification tracking
+
+model PointTransaction {
+  id        String @id @default(uuid())
+
+  userId    String
+  user      User @relation(fields: [userId], references: [id])
+
+  points    Int
+
+  reason    String 
+  // Example: "PLANT_TREE", "VERIFIED_TASK"
+  // Helps explain WHY points were given
+
+  taskId    String?
+  submissionId String?
+
+  createdAt DateTime @default(now())
+}
